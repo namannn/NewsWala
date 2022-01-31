@@ -13,7 +13,7 @@ export class NewsItem extends Component {
                 </span>
                 <img src={imageUrl ? imageUrl : defaultImageUrl} className="card-img-top" alt="..." style={
                     {
-                        height: '180px',
+                        height: '250px',
                         objectFit: 'cover', // to zoomin instead of stretching the image
                     }} />
                 <div className="card-body">

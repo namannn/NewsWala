@@ -2,6 +2,20 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 export class Navbar extends Component {
+    constructor() {
+        super();
+        this.state = {
+            searchTerm: "",
+        };
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+    handleChange(event) {
+        this.setState({ searchTerm: event.target.value });
+    }
+
+    // navigate = useNavigate();
+
     render() {
         return <div>
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -16,27 +30,49 @@ export class Navbar extends Component {
                                 <Link className="nav-link" aria-current="page" to="/">Home</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="/business">Business</Link> 
+                                <Link className="nav-link" to="/business">Business</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="/entertainment">Entertainment</Link> 
+                                <Link className="nav-link" to="/entertainment">Entertainment</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="/general">General</Link> 
+                                <Link className="nav-link" to="/general">General</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="/health">Health</Link> 
+                                <Link className="nav-link" to="/health">Health</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="/science">Science</Link> 
+                                <Link className="nav-link" to="/science">Science</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="/sports">Sports</Link> 
+                                <Link className="nav-link" to="/sports">Sports</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="/technology">Technology</Link> 
+                                <Link className="nav-link" to="/technology">Technology</Link>
                             </li>
                         </ul>
+                        <form className="d-flex" >
+                            <input className="form-control me-2" onChange={this.handleChange} value={this.state.searchTerm} type="search" placeholder="Search" aria-label="Search"/>
+                            <Link 
+                                className="btn btn-outline-success" 
+                                to={`/search`}
+                                onClick={() => this.props.handleSearch(this.state.searchTerm)}
+                                type='submit'
+                                role='button'>
+                                    Search
+                            </Link>
+
+                            {/* <button className="btn btn-outline-success" onClick={() => {
+                                this.props.handleSearch(this.state.searchTerm);
+                                this.props.history.push("/search")
+                            }} type="submit">Search</button> */}
+
+                        </form>
+                        
+                        {/* <form className="d-flex">
+                            <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+                            <button className="btn btn-outline-success" type="submit">Search</button>
+                        </form> */}
                     </div>
                 </div>
             </nav>

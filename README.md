@@ -21,9 +21,6 @@ Get your daily dose of news from multiple sources worldwide in a categorised man
 #### Sports 
 ![image](https://user-images.githubusercontent.com/46934223/152368967-a6d22661-efb4-41c1-b8cc-7c005ca88a6e.png)
 
-
-
-
 ### Search
 ![image](https://user-images.githubusercontent.com/46934223/152369217-4c4444fb-355f-4dca-98fe-00878480bbd2.png)
 ![image](https://user-images.githubusercontent.com/46934223/152369669-faa06bd6-685b-4aad-bf7a-0805175d82e8.png)

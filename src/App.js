@@ -1,6 +1,6 @@
 import './App.css';
 
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import Navbar from './Components/Navbar';
 import News from './Components/News';
 import {
@@ -8,42 +8,49 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
+import LoadingBar from 'react-top-loading-bar';
 
+const App = () => {
+  const pageSize = 6;
+  const apiKey = process.env.REACT_APP_NEWS_API
 
-export default class App extends Component {
-  pageSize = 6;
+  const [searchTerm, setSearchTerm] = useState("");
+  const [progress, setProgress] = useState(0);
 
-  constructor(){
-    super();
-    this.state = {
-      searchTerm: "",
-    }
-  }
+  // setProgress = (progress) => {
+  //   setState({progress: progress});
+  // }
 
-  handleSearch = (searchTerm) => {
-    // this.setState({search: searchTerm});
+  const handleSearch = (searchTerm) => {
     console.log("search button clicked");
     console.log(searchTerm);
-    this.setState({searchTerm: searchTerm});
+    setSearchTerm(searchTerm);
   }
 
   // render() is a lifecycle method.
-  render() {
-    return <div>
-      <Router>
-        <Navbar handleSearch={this.handleSearch}/>
-        <Routes>
-          <Route path="/" element={<News key="general" pageSize={this.pageSize} country="in" category="general" />} />
-          <Route path="/business" element={<News key="business" pageSize={this.pageSize} country="in" category="business" />} />
-          <Route path="/entertainment" element={<News key="entertainment" pageSize={this.pageSize} country="in" category="entertainment" />} />
-          <Route path="/general" element={<News key="general" pageSize={this.pageSize} country="in" category="general" />} />
-          <Route path="/health" element={<News key="health" pageSize={this.pageSize} country="in" category="health" />} />
-          <Route path="/science" element={<News key="science" pageSize={this.pageSize} country="in" category="science" />} />
-          <Route path="/sports" element={<News key="sports" pageSize={this.pageSize} country="in" category="sports" />} />
-          <Route path="/technology" element={<News key="technology" pageSize={this.pageSize} country="in" category="technology" />} />
-          <Route path={`/search`} element={<News key={`search=${this.state.searchTerm}`} pageSize={this.pageSize} search={true} searchTerm={this.state.searchTerm} />} />
-        </Routes>
-      </Router>
-    </div>;
-  }
+  return <div>
+    <Router>
+      <Navbar handleSearch={handleSearch} />
+
+      <LoadingBar
+        color='#f11946'
+        progress={progress}
+        onLoaderFinished={() => setProgress(0)}
+      />
+
+      <Routes>
+        <Route path="/" element={<News setProgress={setProgress} apiKey={apiKey} key="general" pageSize={pageSize} country="in" category="general" />} />
+        <Route path="/business" element={<News setProgress={setProgress} apiKey={apiKey} key="business" pageSize={pageSize} country="in" category="business" />} />
+        <Route path="/entertainment" element={<News setProgress={setProgress} apiKey={apiKey} key="entertainment" pageSize={pageSize} country="in" category="entertainment" />} />
+        <Route path="/general" element={<News setProgress={setProgress} apiKey={apiKey} key="general" pageSize={pageSize} country="in" category="general" />} />
+        <Route path="/health" element={<News setProgress={setProgress} apiKey={apiKey} key="health" pageSize={pageSize} country="in" category="health" />} />
+        <Route path="/science" element={<News setProgress={setProgress} apiKey={apiKey} key="science" pageSize={pageSize} country="in" category="science" />} />
+        <Route path="/sports" element={<News setProgress={setProgress} apiKey={apiKey} key="sports" pageSize={pageSize} country="in" category="sports" />} />
+        <Route path="/technology" element={<News setProgress={setProgress} apiKey={apiKey} key="technology" pageSize={pageSize} country="in" category="technology" />} />
+        <Route path={`/search`} element={<News setProgress={setProgress} apiKey={apiKey} key={`search=${searchTerm}`} pageSize={pageSize} search={true} searchTerm={searchTerm} />} />
+      </Routes>
+    </Router>
+  </div>;
 }
+
+export default App;

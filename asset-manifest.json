@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/NewsWala/static/css/main.0deb154f.chunk.css",
+    "main.js": "/NewsWala/static/js/main.22d01ddf.chunk.js",
+    "main.js.map": "/NewsWala/static/js/main.22d01ddf.chunk.js.map",
+    "runtime~main.js": "/NewsWala/static/js/runtime~main.cc5abaf7.js",
+    "runtime~main.js.map": "/NewsWala/static/js/runtime~main.cc5abaf7.js.map",
+    "static/js/2.116cf1fa.chunk.js": "/NewsWala/static/js/2.116cf1fa.chunk.js",
+    "static/js/2.116cf1fa.chunk.js.map": "/NewsWala/static/js/2.116cf1fa.chunk.js.map",
+    "static/js/3.c70b6b5b.chunk.js": "/NewsWala/static/js/3.c70b6b5b.chunk.js",
+    "static/js/3.c70b6b5b.chunk.js.map": "/NewsWala/static/js/3.c70b6b5b.chunk.js.map",
+    "index.html": "/NewsWala/index.html",
+    "precache-manifest.e855eb7718909fce5ec2945e0b6085a6.js": "/NewsWala/precache-manifest.e855eb7718909fce5ec2945e0b6085a6.js",
+    "service-worker.js": "/NewsWala/service-worker.js",
+    "static/css/main.0deb154f.chunk.css.map": "/NewsWala/static/css/main.0deb154f.chunk.css.map",
+    "static/media/spinner.gif": "/NewsWala/static/media/spinner.c015e4eb.gif"
+  }
+}

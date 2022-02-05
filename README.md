@@ -1,6 +1,6 @@
 # Find it working [here](https://namannn.github.io/NewsWala/) (sample news)
 
-> NOTE : This app couldn't be hosted because of API limitation, which provides free API requests only for development, and not for Production build. [Read here](https://newsapi.org/terms#:~:text=News%20API%20provides%20a%20special%20Developer%20plan%20at%20no%20charge%20for%20new%20users%20of%20the%20Service.%20The%20Developer%20plan%20may%20be%20used%20for%20development%20and%20testing%20in%20a%20development%20environment%20only%2C%20and%20cannot%20be%20used%20in%20a%20staging%20or%20production%20environment%20(including%20internally).)
+> NOTE : This app couldn't be hosted live because of API limitation, which provides free API requests only for development, and not for Production build. [Read here](https://newsapi.org/terms#:~:text=News%20API%20provides%20a%20special%20Developer%20plan%20at%20no%20charge%20for%20new%20users%20of%20the%20Service.%20The%20Developer%20plan%20may%20be%20used%20for%20development%20and%20testing%20in%20a%20development%20environment%20only%2C%20and%20cannot%20be%20used%20in%20a%20staging%20or%20production%20environment%20(including%20internally).)
 
 # NewsWala
 Get your daily dose of news from multiple sources worldwide in a categorised manner, with search functionality.

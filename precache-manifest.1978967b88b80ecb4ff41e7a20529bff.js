@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "e67a29ae99d2b4a0577b2191c4754d62",
+    "revision": "5a7db37ee55ad2a7b368b7eaa7f3c070",
     "url": "/NewsWala/index.html"
   },
   {
-    "revision": "677d813b113fa22c23d0",
+    "revision": "a0fce27dd2a870ed51a4",
     "url": "/NewsWala/static/css/main.0deb154f.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/NewsWala/static/js/3.c70b6b5b.chunk.js"
   },
   {
-    "revision": "677d813b113fa22c23d0",
-    "url": "/NewsWala/static/js/main.96cbac70.chunk.js"
+    "revision": "a0fce27dd2a870ed51a4",
+    "url": "/NewsWala/static/js/main.fb0b8963.chunk.js"
   },
   {
     "revision": "ca54c70715c42ee9755b",

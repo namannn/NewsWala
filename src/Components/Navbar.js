@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Navbar = (props) => {
 
@@ -8,6 +8,8 @@ const Navbar = (props) => {
     const handleChange = (event) => {
         setSearchTerm(event.target.value);
     }
+
+    const navigate = useNavigate();
 
     return <div>
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -43,21 +45,26 @@ const Navbar = (props) => {
                             <Link className="nav-link" to="/technology">Technology</Link>
                         </li>
                     </ul>
-                    <form className="d-flex" >
+                    <form className="d-flex" onSubmit={() => {
+                            props.handleSearch(searchTerm);
+                            navigate('../search', {replace: true})
+                        }}>
+
                         <input className="form-control me-2" onChange={handleChange} value={searchTerm} type="search" placeholder="Search" aria-label="Search" />
-                        <Link
+                        {/* <Link
                             className="btn btn-outline-success"
                             to={`/search`}
                             onClick={() => props.handleSearch(searchTerm)}
                             type='submit'
                             role='button'>
                             Search
-                        </Link>
+                        </Link> */}
 
-                        {/* <button className="btn btn-outline-success" onClick={() => {
-                                props.handleSearch(searchTerm);
-                                props.history.push("/search")
-                            }} type="submit">Search</button> */}
+                        <button 
+                            className="btn btn-outline-success" 
+                            type="submit">
+                                Search
+                        </button>
 
                     </form>
 

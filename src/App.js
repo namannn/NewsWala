@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Navbar from './Components/Navbar';
 import News from './Components/News';
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Routes,
   Route,
 } from "react-router-dom";
@@ -17,17 +17,12 @@ const App = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [progress, setProgress] = useState(0);
 
-  // setProgress = (progress) => {
-  //   setState({progress: progress});
-  // }
-
   const handleSearch = (searchTerm) => {
-    console.log("search button clicked");
-    console.log(searchTerm);
+    // console.log("search button clicked");
+    // console.log(searchTerm);
     setSearchTerm(searchTerm);
   }
 
-  // render() is a lifecycle method.
   return <div>
     <Router>
       <Navbar handleSearch={handleSearch} />

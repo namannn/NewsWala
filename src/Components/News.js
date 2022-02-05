@@ -5,10 +5,14 @@ import PropTypes from 'prop-types';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 const News = (props) => {
+
+    const [isSample, setIsSample] = useState(true); // True : No API fetching
+
     const [articles, setArticles] = useState([]);
     const [loading, setLoading] = useState(true);
     const [page, setPage] = useState(1);
     const [totalResults, setTotalResults] = useState(0);
+    
 
     const capitalizeFirstLetter = (string) => {
         return string.charAt(0).toUpperCase() + string.slice(1);
@@ -279,62 +283,64 @@ const News = (props) => {
 
     const updateNews = async () => {
         props.setProgress(10);
-    
-        /*
-        let url = '';
-        if (props.searchTerm !== '') {
-            console.log("search url");
-            url = `https://newsapi.org/v2/everything?`
-                + `q=${props.searchTerm}`
-                // + `&country=in`
-                + `&language=en`
-                + `&sortBy=publishedAt`
-                + `&apiKey=${props.apiKey}`
-                + `&page=${page}`
-                + `&pagesize=${props.pageSize}`;
-            document.title = capitalizeFirstLetter(props.searchTerm) + ' - NewsWala';
-        } else {
-            url = `https://newsapi.org/v2/top-headlines?`
-                + `country=${props.country}`
-                + `&category=${props.category}`
-                + `&apiKey=${props.apiKey}`
-                + `&page=${page}`
-                + `&pagesize=${props.pageSize}`;
-            document.title = capitalizeFirstLetter(props.category) + ' - NewsWala'
-        }
-
-        props.setProgress(30);
-        let data = await fetch(url);
-        // await new Promise(resolve => setTimeout(resolve, 1000));
-        let parsedData = await data.json();
-        props.setProgress(60);
-        console.log(parsedData);
-
-        if (parsedData.status === "error") {
+        
+        const loadSampleNews = () => {
             setArticles(articles.concat(sampleArticles.slice((page * 6) - 6, page * 6)));
             setTotalResults(sampleArticles.length);
+            setIsSample(true);
             console.log("page number: " + page);
         }
-        else {
-            setArticles(articles.concat(parsedData.articles));
-            setTotalResults(parsedData.totalResults);
-            console.log("page number: " + page);
-        }
-        */
-      
 
-        setArticles(articles.concat(sampleArticles.slice((page * 6) - 6, page * 6)));
-        setTotalResults(sampleArticles.length);
-        console.log("page number: " + page);
+        if(!isSample){
+            let url = '';
+            if (props.searchTerm !== '') {
+                console.log("search url");
+                url = `https://newsapi.org/v2/everything?`
+                    + `q=${props.searchTerm}`
+                    // + `&country=in`
+                    + `&language=en`
+                    + `&sortBy=publishedAt`
+                    + `&apiKey=${props.apiKey}`
+                    + `&page=${page}`
+                    + `&pagesize=${props.pageSize}`;
+                document.title = capitalizeFirstLetter(props.searchTerm) + ' - NewsWala';
+            } else {
+                url = `https://newsapi.org/v2/top-headlines?`
+                    + `country=${props.country}`
+                    + `&category=${props.category}`
+                    + `&apiKey=${props.apiKey}`
+                    + `&page=${page}`
+                    + `&pagesize=${props.pageSize}`;
+                document.title = capitalizeFirstLetter(props.category) + ' - NewsWala'
+            }
+
+            props.setProgress(30);
+            let data = await fetch(url);
+            let parsedData = await data.json();
+            props.setProgress(60);
+            console.log(parsedData);
+
+            if (parsedData.status === "error") {
+                loadSampleNews();
+            }
+            else {
+                setArticles(articles.concat(parsedData.articles));
+                setTotalResults(parsedData.totalResults);
+                setIsSample(false);
+                console.log("page number: " + page);
+            }
+        }
+        else{
+            loadSampleNews();
+        }
 
         setLoading(false);
         props.setProgress(100);
     }
 
-    useEffect(() => { 
-        async function fun(){
+    useEffect(() => {
+        async function fun() {
             await updateNews();
-            console.log("useEffect()");
         }
         fun();
     }, [page, props.category]);
@@ -345,6 +351,20 @@ const News = (props) => {
 
     return (
         <>
+            {isSample && 
+                <div className="alert alert-danger d-flex align-items-center" role="alert">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" className="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:">
+                        <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                    </svg>
+                    <div>
+                        Website showing sample data only. News is not realtime.{" "}
+                        <a href="https://github.com/namannn/NewsWala#note">
+                            Know more
+                        </a> 
+                    </div>
+                </div>
+            }
+
             {props.searchTerm === '' ?
                 <h1 className="text-center my-5">NewsWala - Top {props.category !== "general" ? props.category.charAt(0).toUpperCase() + props.category.slice(1) : ""} Headlines</h1>
                 : <h1 className="text-center my-5">NewsWala - <i>"{props.searchTerm}"</i></h1>}

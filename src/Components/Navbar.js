@@ -1,57 +1,92 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 const Navbar = (props) => {
+  const [searchTerm, setSearchTerm] = useState("");
 
-    const [searchTerm, setSearchTerm] = useState("");
+  const handleChange = (event) => {
+    setSearchTerm(event.target.value);
+  };
 
-    const handleChange = (event) => {
-        setSearchTerm(event.target.value);
-    }
+  const navigate = useNavigate();
 
-    const navigate = useNavigate();
-
-    return <div>
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div className="container-fluid">
-                <Link className="navbar-brand" to="/">NewsWala</Link>
-                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"></span>
-                </button>
-                <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li className="nav-item">
-                            <Link className="nav-link" aria-current="page" to="/">Home</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/business">Business</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/entertainment">Entertainment</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/general">General</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/health">Health</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/science">Science</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/sports">Sports</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/technology">Technology</Link>
-                        </li>
-                    </ul>
-                    <form className="d-flex" onSubmit={() => {
-                            props.handleSearch(searchTerm);
-                            navigate('../search', {replace: true})
-                        }}>
-
-                        <input className="form-control me-2" onChange={handleChange} value={searchTerm} type="search" placeholder="Search" aria-label="Search" />
-                        {/* <Link
+  return (
+    <div>
+      <nav className="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+        <div className="container-fluid">
+          <Link className="navbar-brand" to="/">
+            NewsWala
+          </Link>
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+              <li className="nav-item">
+                <Link className="nav-link" aria-current="page" to="/">
+                  Home
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/business">
+                  Business
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/entertainment">
+                  Entertainment
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/general">
+                  General
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/health">
+                  Health
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/science">
+                  Science
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/sports">
+                  Sports
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/technology">
+                  Technology
+                </Link>
+              </li>
+            </ul>
+            <form
+              className="d-flex"
+              onSubmit={() => {
+                props.handleSearch(searchTerm);
+                navigate("../search", { replace: true });
+              }}
+            >
+              <input
+                className="form-control me-2"
+                onChange={handleChange}
+                value={searchTerm}
+                type="search"
+                placeholder="Search"
+                aria-label="Search"
+              />
+              {/* <Link
                             className="btn btn-outline-success"
                             to={`/search`}
                             onClick={() => props.handleSearch(searchTerm)}
@@ -60,22 +95,20 @@ const Navbar = (props) => {
                             Search
                         </Link> */}
 
-                        <button 
-                            className="btn btn-outline-success" 
-                            type="submit">
-                                Search
-                        </button>
+              <button className="btn btn-outline-success" type="submit">
+                Search
+              </button>
+            </form>
 
-                    </form>
-
-                    {/* <form className="d-flex">
+            {/* <form className="d-flex">
                             <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
                             <button className="btn btn-outline-success" type="submit">Search</button>
                         </form> */}
-                </div>
-            </div>
-        </nav>
-    </div>;
-}
+          </div>
+        </div>
+      </nav>
+    </div>
+  );
+};
 
 export default Navbar;
